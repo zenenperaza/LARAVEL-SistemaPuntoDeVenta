@@ -56,6 +56,7 @@
                                 <tr>
                                     <th>Opciones</th>
                                     <th>Codigo</th>
+                                    <th>Nombre</th>
                                     <th>Descripcion</th>
                                     <th>Stock</th>
                                     <th>Imagen</th>
@@ -74,13 +75,26 @@
                                     <td>{{ $prod->nombre}}</td>
                                     <td>{{ $prod->descripcion}}</td>
                                     <td>{{ $prod->stock}}</td>
-                                    <td>{{ $prod->image}}</td>
+                                    <td><img src="{{ asset('../imagenes/productos/'.$prod->image)}}" alt="" height="70px" width="70px" class="img img-thumbnail"></td>
                                     <td>{{ $prod->estatus}}</td>
 
                                 </tr>
                                 {{-- @include('almacen.producto.modal') --}}
                                 @endforeach
                             </tbody>
+                            <tfoot>
+                                <tr>
+                                    <tr>
+                                        <th>Opciones</th>
+                                        <th>Codigo</th>
+                                        <th>Nombre</th>
+                                        <th>Descripcion</th>
+                                        <th>Stock</th>
+                                        <th>Imagen</th>
+                                        <th>Estatus</th>
+                                    </tr>
+                                </tr>
+                            </tfoot>
                         </table>
                         {{ $productos->links() }}
                     </div>

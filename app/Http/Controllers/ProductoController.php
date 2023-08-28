@@ -2,8 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ProductoFormRequest;
+use App\Models\Categoria;
+use App\Models\Producto;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Str;
 
 class ProductoController extends Controller
 {
@@ -29,15 +33,37 @@ class ProductoController extends Controller
      */
     public function create()
     {
-        return view('almacen.producto.create', compact('productos', 'texto'));
+        $categorias=DB::table('categoria')
+        ->where('estatus', '=', '1')
+        ->get();
+       
+        return view('almacen.producto.create', ["categorias"=>$categorias]);
     }
 
     /**
      * Store a newly created resource in storage.
      */
-    public function store(Request $request)
+    public function store(request $request)
     {
-        //
+        $producto = new Producto;
+        $producto->id_categoria = $request->input('id_categoria');
+        $producto->codigo = $request->input('codigo');
+        $producto->nombre = $request->input('nombre');
+        $producto->stock = $request->input('stock');
+        $producto->descripcion = $request->input('descripcion');
+        $producto->estatus = 'Activo';
+
+        if ($request->hasFile("imagen")) {
+            $imagen = $request->file("imagen");
+            $nombreImagen = Str::slug($request->nombre).".".$imagen->guessExtension();
+            $ruta = public_path("imagenes/productos/");
+
+            copy($imagen->getRealPath(), $ruta.$nombreImagen);
+
+            $producto->image = $nombreImagen;
+        }
+        $producto->save();
+        return redirect()->route('producto.index');
     }
 
     /**

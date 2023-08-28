@@ -2,7 +2,7 @@
 
 @section('contenido')
    
-<div class="content col-6"> 
+<div class="content col-12"> 
     <div class="card card-primary" >
         <div class="card-header">
             <h3 class="card-header">Nuevo Producto</h3>
@@ -45,40 +45,31 @@
               <div class="form-group col-md-6">
                 <div class="form-group">
                   <label for="unidad">Unidad</label>
-                  <select class="form-control" id="unidad" name="unidad">
-                 
+                  <select class="form-control" id="unidad" name="unidad">                 
                     <option value="">Piezas</option>   
                     <option value="">Kilos</option>   
                     <option value="">Cajas</option>   
-                    <option value="">Paquetes</option>                        
-                  
+                    <option value="">Paquetes</option>  
                   </select>
                 </div>
               </div>
               <div class="form-group col-md-6">
                 <label for="descripcion">Descripcion</label>
-                <input type="number" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
+                <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">
               </div>
             </div>
-
-
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <div class="custom-file">
-                  <input type="file" class="custom-file-input" id="validatedCustomFile" required>
-                  <label class="custom-file-label" for="validatedCustomFile">Choose file...</label>
-                  <div class="invalid-feedback">Example invalid custom file feedback</div>
+              <div class="form-group col-md-12">                
+                <label for="">Imagen</label>
+                <div class="custom-file">                  
+                  <input type="file" class="custom-file-input" id="imagen" name="imagen" required>
+                  <label class="custom-file-label" for="imagen">Seleccione...</label>
                 </div>
               </div>
               
             </div>
 
-
-
-
-
-    \
-            <button type="submit" class="btn btn-primary">Sign in</button>          
+            <button type="submit" class="btn btn-primary">Guardar</button>          
         </form>
       </div>
     </div>
