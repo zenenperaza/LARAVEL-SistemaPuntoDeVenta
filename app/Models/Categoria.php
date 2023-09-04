@@ -18,7 +18,7 @@ class Categoria extends Model
     protected $fillable=[
         'categoria',
         'descripcion',
-        'estatus'
+        'estado'
     ];
 
     protected $guarded = [

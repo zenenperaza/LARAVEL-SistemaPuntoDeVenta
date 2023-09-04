@@ -21,8 +21,8 @@ class Producto extends Model
         'nombre',
         'stock',
         'descripcion',
-        'image',
-        'estatus',
+        'imagen',
+        'estado',
     ];
 
     protected $guarded = [

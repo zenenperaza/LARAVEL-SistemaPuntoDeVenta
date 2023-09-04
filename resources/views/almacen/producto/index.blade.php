@@ -60,26 +60,26 @@
                                     <th>Descripcion</th>
                                     <th>Stock</th>
                                     <th>Imagen</th>
-                                    <th>Estatus</th>
+                                    <th>estado</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($productos as $prod)
                                 <tr>
                                     <td>
-                                        <a href="" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
+                                        <a href="{{ route('producto.edit', $prod->id_producto) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
                                         <!-- Button trigger for danger theme modal -->
-                                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-delete-"><i class="fas fa-trash-alt"></i></button>
+                                        <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-delete-{{ $prod->id_producto }}"><i class="fas fa-trash-alt"></i></button>
                                     </td>
                                     <td>{{ $prod->codigo}}</td>
                                     <td>{{ $prod->nombre}}</td>
                                     <td>{{ $prod->descripcion}}</td>
                                     <td>{{ $prod->stock}}</td>
-                                    <td><img src="{{ asset('../imagenes/productos/'.$prod->image)}}" alt="" height="70px" width="70px" class="img img-thumbnail"></td>
-                                    <td>{{ $prod->estatus}}</td>
+                                    <td><img src="{{ asset('../imagenes/productos/'.$prod->imagen)}}" alt="" height="70px" width="70px" class="img img-thumbnail"></td>
+                                    <td>{{ $prod->estado}}</td>
 
                                 </tr>
-                                {{-- @include('almacen.producto.modal') --}}
+                                @include('almacen.producto.modal')
                                 @endforeach
                             </tbody>
                             <tfoot>
@@ -91,7 +91,7 @@
                                         <th>Descripcion</th>
                                         <th>Stock</th>
                                         <th>Imagen</th>
-                                        <th>Estatus</th>
+                                        <th>estado</th>
                                     </tr>
                                 </tr>
                             </tfoot>

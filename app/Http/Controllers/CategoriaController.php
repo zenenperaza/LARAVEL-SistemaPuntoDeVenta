@@ -24,7 +24,7 @@ class CategoriaController extends Controller
         {
             $query=trim($request->get('texto'));
             $categorias=DB::table('categoria')->where('categoria','LIKE','%'.$query.'%')
-            ->where('estatus', '=', '1')
+            ->where('estado', '=', '1')
             ->orderBy('id_categoria', 'desc')
             ->paginate(7);
             return view('almacen.categoria.index',["categoria"=>$categorias,"texto"=>$query]);
@@ -50,7 +50,7 @@ class CategoriaController extends Controller
         $categoria=new Categoria;
         $categoria->categoria=$request->get('categoria');
         $categoria->descripcion=$request->get('descripcion');
-        $categoria->estatus='1';
+        $categoria->estado='1';
         $categoria->save();
         return Redirect::to('almacen/categoria');
 
@@ -95,7 +95,7 @@ class CategoriaController extends Controller
     {
         //
         $categoria=Categoria::findOrFail($id);
-        $categoria->estatus='0';
+        $categoria->estado='0';
         $categoria->update();
         /* return Redirect::to('almacen/categoria'); */
         return redirect()->route('categoria.index')

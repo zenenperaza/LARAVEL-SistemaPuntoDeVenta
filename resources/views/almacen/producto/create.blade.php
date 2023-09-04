@@ -42,17 +42,7 @@
             </div>
 
             <div class="form-row">
-              <div class="form-group col-md-6">
-                <div class="form-group">
-                  <label for="unidad">Unidad</label>
-                  <select class="form-control" id="unidad" name="unidad">                 
-                    <option value="">Piezas</option>   
-                    <option value="">Kilos</option>   
-                    <option value="">Cajas</option>   
-                    <option value="">Paquetes</option>  
-                  </select>
-                </div>
-              </div>
+
               <div class="form-group col-md-6">
                 <label for="descripcion">Descripcion</label>
                 <input type="text" class="form-control" id="descripcion" name="descripcion" placeholder="Descripcion">

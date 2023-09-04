@@ -22,13 +22,6 @@ class ProductoFormRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'id_categoria' => 'required',
-            'codigo' => 'required',
-            'nombre' => 'required',
-            'stock' => 'required',
-            'descripcion' => 'required',
-            'image' => 'required',
-            'estatus' => 'required',
         ];
     }
 }
