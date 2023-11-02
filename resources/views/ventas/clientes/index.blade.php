@@ -66,10 +66,7 @@
                                 @foreach ($clientes as $cli)
                                 <tr>
                                     <td>
-                                        <a href="
-                                        {{-- {{ route('categoria.edit', $cat->id_categoria) }}
-                                         --}}
-                                        " class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
+                                        <a href="{{ route('clientes.edit', $cli->id_persona) }}" class="btn btn-warning btn-sm"><i class="fas fa-pen"></i></a>
                                         <!-- Button trigger for danger theme modal -->
                                         <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal" data-target="#modal-delete-
                                         {{-- {{ $cat->id_categoria }} --}}

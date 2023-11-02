@@ -78,22 +78,21 @@ class ClienteController extends Controller
     public function edit($id)
     {
         //
-        return view("ventas.clientes.edit",["cliente"=>Cliente::findOrFail($id)]);
+        return view("ventas.clientes.edit", ["cliente"=>Cliente::findOrFail($id)]);
     }
 
     /**
      * Update the specified resource in storage.
      */
-    public function update(ClienteFormRequest $request,$id)
+    public function update(Request $request, $id)
     {        
         $cliente=Cliente::findOrFail($id);
-        $cliente->tipo_persona=$request->get('tipo_persona');
-        $cliente->nombre=$request->get('nombre');
-        $cliente->tipo_documento=$request->get('tipo_documento');
-        $cliente->num_documento=$request->get('num_documento');
-        $cliente->direccion=$request->get('direccion');
-        $cliente->telefono=$request->get('telefono');
-        $cliente->email=$request->get('email');
+        $cliente->nombre=$request->input('nombre');
+        $cliente->tipo_documento=$request->input('tipo_documento');
+        $cliente->num_documento=$request->input('num_documento');
+        $cliente->direccion=$request->input('direccion');
+        $cliente->telefono=$request->input('telefono');
+        $cliente->email=$request->input('email');
         $cliente->update();
         return Redirect::to('ventas/clientes');
     }
