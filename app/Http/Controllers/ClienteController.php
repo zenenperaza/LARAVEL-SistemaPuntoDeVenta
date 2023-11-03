@@ -25,6 +25,7 @@ class ClienteController extends Controller
             $query=trim($request->get('texto'));
             $clientes=DB::table('persona')->where('nombre','LIKE','%'.$query.'%')
             ->where('tipo_persona', '=', 'Cliente')
+            ->where('estatus', '=', 1)
             ->orderBy('id_persona', 'desc')
             ->paginate(7);
             return view('ventas.clientes.index',["clientes"=>$clientes,"texto"=>$query]);
@@ -104,7 +105,7 @@ class ClienteController extends Controller
     {
         //
         $cliente=Cliente::findOrFail($id);
-        $cliente->estado='0';
+        $cliente->estatus='0';
         $cliente->update();
         return redirect()->route('clientes.index')
                     ->with('success', 'Cliente eliminado correctamente');
