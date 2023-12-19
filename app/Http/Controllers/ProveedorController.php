@@ -7,8 +7,8 @@ use App\Models\Proveedores;
 use Illuminate\Support\Facades\Redirect;
 use App\Http\Requests\ProveedorFormRequest;
 use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Request;
 use NunoMaduro\Collision\Provider;
+use Illuminate\Http\Request;
 
 class ProveedorController extends Controller
 {
