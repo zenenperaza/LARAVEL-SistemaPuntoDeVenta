@@ -25,7 +25,7 @@ class ProveedorController extends Controller
              ->where('tipo_persona', '=', 'Proveedor')
              ->where('estatus', '=', 1)
              ->orderBy('id_persona', 'desc')
-             ->paginate(7);
+             ->paginate(5);
              return view('compras.proveedor.index',["proveedor"=>$proveedor,"texto"=>$query]);
          }
     }

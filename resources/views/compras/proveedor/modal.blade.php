@@ -12,7 +12,7 @@
         </div>
         <div class="modal-body">
          
-            <p>Deseas eliminar el Proveedor <strong>{{ $prov->nombre }}</strong></p>
+            <p>Deseas eliminar al Proveedor <strong>{{ $prov->nombre }}</strong></p>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
