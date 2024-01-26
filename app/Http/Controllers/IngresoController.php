@@ -31,7 +31,7 @@ class IngresoController extends Controller
             ->join('persona as p', 'i.id_proveedor', '=', 'id_persona')
             ->join('detalle_ingreso as di', 'di.id_ingreso', '=', 'i.id_ingreso')
             ->select('i.id_ingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.num_comprobante', 'i.impuesto', 'i.estado', DB::raw('sum(di.cantidad*di.precio_compra) as total'))
-            ->where('i.id_num_comprobante', 'LIKE', '%'.$query.'%')
+            ->where('i.num_comprobante', 'LIKE', '%'.$query.'%')
             ->groupBy('i.id_ingreso', 'i.fecha_hora', 'p.nombre', 'i.tipo_comprobante', 'i.num_comprobante', 'i.impuesto', 'i.estado')
             ->orderBy('i.id_ingreso', 'desc')
             ->paginate(10);
@@ -48,7 +48,7 @@ class IngresoController extends Controller
         $personas=DB::table('persona')->where('tipo_persona', '=', 'Proveedor')->get();
         $ingreso= Ingreso::all();
         $productos=DB::table('producto as p')
-        ->select(DB::raw('CONCAT(p.codigo, " ",p.nombre) AS Articulo'), 'p.id_producto', 'p.stock', 'p.unidad')
+        ->select(DB::raw('CONCAT(p.codigo, " ",p.nombre) AS Articulo'), 'p.id_producto', 'p.stock')
         ->where('p.estado', '=', 'Activo')
         ->get();
         return view("compras.ingreso.create",["personas"=>$personas,"productos"=>$productos,"ingreso"=>$ingreso]);
