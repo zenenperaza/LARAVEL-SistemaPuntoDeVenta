@@ -61,8 +61,37 @@
            <button type="button" id="bt_add" class="btn btn-success">Add</button>
           </div>
         </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover mb-0">
+              <thead>
+                  <tr>
+                      <th>Opciones</th>
+                      <th>Producto</th>
+                      <th>Cantidad</th>
+                      <th>Precio de compra</th>
+                      <th>Precio de venta</th>
+                      <th>Sub total</th>
+                      <th>Estatus</th>
+                  </tr>
+              </thead>
+              <tfoot>
+                <th>TOTAL</th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th><h4 id="total">$ 0,00</h4></th>
+              </tfoot>
+              <tbody>
+                 
+              </tbody>
+          </table>
+      </div>
           
         <div class="row mb-3">
+          {{-- <input type="hidden" name="_token" value="{{ csrf_token }}"> --}}
           <div class="col">
             <button type="submit" class="btn btn-success">Guardar</button>
             <button type="reset" class="btn btn-danger">Cancelar</button>
