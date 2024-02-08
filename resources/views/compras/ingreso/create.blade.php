@@ -35,8 +35,8 @@
 
         <div class="row mb-3">
           <div class="col-4">
-            <label for="id_producto" class="form-label">Producto</label>
-            <select class="form-control selectpicker" id="id_producto" name="id_producto" data-live-search="true">   
+            <label for="pidarticulo" class="form-label">Producto</label>
+            <select class="form-control selectpicker" id="pidarticulo" name="pidarticulo" data-live-search="true">   
               @foreach ($productos as $producto)
               <option value="{{ $producto->id_producto }}">{{ $producto->Articulo }}</option>                 
               @endforeach              
@@ -44,16 +44,16 @@
           </div>
           <div class="col-2">            
             <label for="pcantidad" class="form-label">Cantidad</label>
-            <input type="number" class="form-control" id="pcantidad"  name="pcantidad" min="0"  >    
+            <input type="number" class="form-control" id="pcantidad"  name="pcantidad" min="1"  >    
           </div>
           <div class="col-2">
             <label for="pprecio_compra" class="form-label">P. Compra</label>
-            <input type="number" class="form-control" id="pprecio_compra" step="0.01" min="0" name="pprecio_compra"   > 
+            <input type="number" class="form-control" id="pprecio_compra" step="0.01" min="1" name="pprecio_compra"   > 
             
           </div>
           <div class="col-2">            
             <label for="pprecio_venta" class="form-label">P. Venta</label>
-            <input type="number" class="form-control" id="pprecio_venta" step="0.01" min="0" name="pprecio_venta"   > 
+            <input type="number" class="form-control" id="pprecio_venta" step="0.01" min="1" name="pprecio_venta"   > 
             
           </div>
           <div class="col-2">            
@@ -63,7 +63,7 @@
         </div>
 
         <div class="table-responsive">
-          <table class="table table-hover mb-0">
+          <table id="detalles" class="table table-hover mb-0">
               <thead>
                   <tr>
                       <th>Opciones</th>
@@ -72,12 +72,10 @@
                       <th>Precio de compra</th>
                       <th>Precio de venta</th>
                       <th>Sub total</th>
-                      <th>Estatus</th>
                   </tr>
               </thead>
               <tfoot>
                 <th>TOTAL</th>
-                <th></th>
                 <th></th>
                 <th></th>
                 <th></th>
@@ -103,4 +101,84 @@
     </div>
     
   </div>
+
+@push('script')
+<script>
+
+  $(document).ready(function(){
+    $('#bt_add').click(function(){
+      console.log('hi');
+      agregar();
+    })
+  })
+
+  var cont = 0;
+  total = 0;
+  subtotal = [];
+
+  $('#guardar').hide();
+  $('#pidarticulo').change(mostrarValores);
+
+  function mostrarValores(){ 
+    datosArticulo = document.getElementById('pidarticulo').value.split('_');
+    $("#pcantidad").val(datosArticulo[1]);
+    $("#unidad").html(datosArticulo[2]);
+
+  }
+
+  function agregar(){
+    datosArticulo = document.getElementById('pidarticulo').value.split('_');
+
+    idarticulo = datosArticulo[0];
+    articulo = $('pidarticulo option:selected').text();
+    cantidad = $('#pcantidad').val();
+    precio_compra = $('#pprecio_compra').val();
+    precio_venta = $('#pprecio_venta').val();
+
+    if(idarticulo != '' && cantidad != '' && cantidad > 0 && precio_compra != '' && precio_venta != ''){
+      subtotal[cont] = (cantidad * precio_compra);
+      total = total + subtotal[cont];
+
+      var fila = '<tr class= "selected" id="fila' + cont +
+       '"><td><button type="button" class="btn btn-warning" onclick="eliminar(' + cont +
+         ');">X</button></td><td><input type="hidden" name="idarticulo[]" value="' + idarticulo + '" >' + idarticulo +
+          '</td><td><input type="number" name="cantidad[]" value="' + cantidad + 
+          '"></td><td><input type="number" name="precio_compra[]" value="' + precio_compra +
+             '"></td><td><input type="number" name="precio_venta[]" value="' + precio_venta + 
+              '"></td><td>' + subtotal[cont] + '</td></tr>';
+      cont++;
+      limpiar();
+      $('#total').html("$ " + total);
+      evaluar();
+      $('#detalles').append(fila);
+    } else {
+      alert("Error al ingresar el detalle del ingreso, revise los datos del articulo");
+    }
+  }
+
+  function limpiar(){
+    $("#pcantidad").val("");
+    $("#pprecio_compra").val("");
+    $("#pprecio_venta").val("");
+  } 
+  
+  function evaluar(){
+    if (total > 0) {
+      $("#guardar").show();
+    } else {      
+      $("#guardar").hide();
+    }
+  }
+
+  function eliminar(index) {
+    total = total - subtotal[index];
+    $("#total").html("$: " + total);
+    $("#fila" + index).remove();
+    evaluar();
+    
+  }
+
+
+</script>  
+@endpush
 @endsection
